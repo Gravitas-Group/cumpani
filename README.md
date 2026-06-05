@@ -1,73 +1,73 @@
-# Welcome to your Lovable project
+# Cumpani
 
-## Project info
+Cumpani is a South African platform that facilitates consensual adult social and entertainment interactions. Cumpanions who appear on the platform are independent contractors and are responsible for their own services and compliance with applicable laws. Cumpani is a technology platform that connects consenting adults and provides tools for booking, payments, scheduling, and verification. Cumpani does not provide adult services directly and does not employ or direct Cumpanions.
 
-**URL**: https://lovable.dev/projects/65c2f9ed-16cc-427a-af29-7a59108fd09a
+Important notes:
+- All interactions supported by this platform are between consenting adults only.
+- Cumpani discourages and does not support any activity that is illegal or non-consensual.
+- Users and Cumpanions are responsible for confirming local legal requirements and for their own safety.
 
-## How can I edit this code?
+Project overview
 
-There are several ways of editing your application.
+This repository contains a starter Next.js 15 (App Router) application implemented with TypeScript, Tailwind CSS, Prisma (PostgreSQL), Auth.js (Prisma adapter), Redis, and Stripe. It includes a Docker Compose setup for local development with Postgres and Redis, and CI configured with GitHub Actions.
 
-**Use Lovable**
+What's included
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/65c2f9ed-16cc-427a-af29-7a59108fd09a) and start prompting.
+- Next.js 15 App Router with TypeScript
+- Tailwind CSS for styling
+- Prisma ORM with a starter schema for User and Cumpanion models
+- Auth.js scaffold using Prisma adapter
+- Redis client setup (ioredis)
+- Stripe client and webhook placeholder
+- Docker Compose for local dev (Postgres + Redis + app)
+- ESLint + Prettier configuration
+- Husky + lint-staged pre-commit hooks
+- GitHub Actions workflow for CI (install, typecheck, lint, build)
 
-Changes made via Lovable will be committed automatically to this repo.
+Getting started (local)
 
-**Use your preferred IDE**
+1. Copy .env.example to .env and fill in secrets
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+2. Start local services with Docker Compose
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+   docker-compose up -d --build
 
-Follow these steps:
+3. Install dependencies
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+   npm ci
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+4. Generate Prisma client and run migrations
 
-# Step 3: Install the necessary dependencies.
-npm i
+   npx prisma generate
+   # when ready to create schema migration
+   npx prisma migrate dev --name init
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+5. Start the dev server
 
-**Edit a file directly in GitHub**
+   npm run dev
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Authentication
 
-**Use GitHub Codespaces**
+This starter includes Auth.js (server-side configuration placeholder) and a Prisma schema compatible with using the Prisma adapter. You will need to add OAuth provider configuration in src/lib/auth.ts or in an API route where you initialize Auth.js.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Payments
 
-## What technologies are used for this project?
+Stripe is included via the stripe library. Add your STRIPE_SECRET_KEY and STRIPE_WEBHOOK_SECRET to .env and implement webhook handling in src/app/api/stripe/webhook/route.ts.
 
-This project is built with:
+Development notes
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Husky: After cloning, run npm run prepare to install Husky hooks.
+- Linting: npm run lint
+- Formatting: npm run format
 
-## How can I deploy this project?
+Security & legal
 
-Simply open [Lovable](https://lovable.dev/projects/65c2f9ed-16cc-427a-af29-7a59108fd09a) and click on Share -> Publish.
+This repository is a technical scaffold and does not include legal documents, age-verification, KYC, or content-moderation systems. Before launching any real platform that facilitates adult interactions, consult legal counsel and implement robust safety, verification, and moderation processes. Ensure compliance with South African law and any other jurisdictions where you operate.
 
-## Can I connect a custom domain to my Lovable project?
+Contributing
 
-Yes, you can!
+Please follow the standard GitHub workflow. Install Husky (npm run prepare) and respect linting/formatting rules. Open PRs against main or master and ensure CI checks pass.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+License
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Add a license as appropriate for your project.
